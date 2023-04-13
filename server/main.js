@@ -6,7 +6,7 @@ import bodyParser from 'body-parser';
 
 const TWILIO_ACCOUNT_SID = process.env.TWILIO_ACCOUNT_SID;
 const TWILIO_AUTH_TOKEN = process.env.TWILIO_AUTH_TOKEN;
-const MY_PHONE_NUMBER = process.env.MY_PHONE_NUMBER;
+const MY_PHONE_NUMBER = process.env.PHONE_NUMBER;
 const AMAZON_AFFILIATE_TAG = process.env.AMAZON_AFFILIATE_TAG;
 
 const client = Twilio(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
@@ -62,7 +62,7 @@ async function processMessage(message) {
 
 WebApp.connectHandlers.use(bodyParser.urlencoded({ extended: false }));
 
-WebApp.connectHandlers.use('/incoming', async (req, res) => {
+WebApp.connectHandlers.use('/sms', async (req, res) => {
   if (req.method === 'POST') {
     const message = {
       From: req.body.From,
