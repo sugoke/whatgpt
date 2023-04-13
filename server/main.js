@@ -1,37 +1,86 @@
 import { Meteor } from 'meteor/meteor';
-import { LinksCollection } from '/imports/api/links';
+import { WebApp } from 'meteor/webapp';
+import Twilio from 'twilio';
+import fetch from 'node-fetch';
+import bodyParser from 'body-parser';
 
-async function insertLink({ title, url }) {
-  await LinksCollection.insertAsync({ title, url, createdAt: new Date() });
+const TWILIO_ACCOUNT_SID = process.env.TWILIO_ACCOUNT_SID;
+const TWILIO_AUTH_TOKEN = process.env.TWILIO_AUTH_TOKEN;
+const MY_PHONE_NUMBER = process.env.MY_PHONE_NUMBER;
+const AMAZON_AFFILIATE_TAG = process.env.AMAZON_AFFILIATE_TAG;
+
+const client = Twilio(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
+
+function sendText(to, body) {
+  return client.messages.create({
+    from: MY_PHONE_NUMBER,
+    to,
+    body
+  });
 }
 
-Meteor.startup(async () => {
-  // If the Links collection is empty, add some data.
-  if (await LinksCollection.find().countAsync() === 0) {
-    await insertLink({
-      title: 'Do the Tutorial',
-      url: 'https://www.meteor.com/tutorials/react/creating-an-app',
-    });
+async function getChatGPTResponse(prompt) {
+  const API_KEY = process.env.OPENAI_API_KEY;
 
-    await insertLink({
-      title: 'Follow the Guide',
-      url: 'https://guide.meteor.com',
-    });
-
-    await insertLink({
-      title: 'Read the Docs',
-      url: 'https://docs.meteor.com',
-    });
-
-    await insertLink({
-      title: 'Discussions',
-      url: 'https://forums.meteor.com',
-    });
-  }
-
-  // We publish the entire Links collection to all clients.
-  // In order to be fetched in real-time to the clients
-  Meteor.publish("links", function () {
-    return LinksCollection.find();
+  const response = await fetch('https://api.openai.com/v1/engines/davinci-codex/completions', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${API_KEY}`
+    },
+    body: JSON.stringify({
+      prompt,
+      max_tokens: 150,
+      n: 1,
+      stop: null,
+      temperature: 0.7
+    })
   });
+
+  const data = await response.json();
+  return data.choices[0].text.trim();
+}
+
+async function processMessage(message) {
+  const senderPhoneNumber = message.From;
+  const text = message.Body;
+
+  // Check if it's the first message
+  if (text.toLowerCase().startsWith('impersonate')) {
+    const person = text.slice(11).trim();
+    // Save the impersonation target in a user's session (or database)
+    // ...
+    await sendText(senderPhoneNumber, `I'm now impersonating ${person}. You can ask me questions as if I were them.`);
+  } else {
+    // Get the impersonation target from the user's session (or database)
+    // ...
+    const prompt = `As ${person}, ${text}`;
+    const response = await getChatGPTResponse(prompt);
+    await sendText(senderPhoneNumber, response);
+  }
+}
+
+WebApp.connectHandlers.use(bodyParser.urlencoded({ extended: false }));
+
+WebApp.connectHandlers.use('/incoming', async (req, res) => {
+  if (req.method === 'POST') {
+    const message = {
+      From: req.body.From,
+      Body: req.body.Body
+    };
+
+    processMessage(message).catch(err => {
+      console.error('Error processing message:', err);
+    });
+
+    res.writeHead(200, { 'Content-Type': 'text/xml' });
+    res.end('<Response></Response>');
+  } else {
+    res.writeHead(405, { 'Content-Type': 'text/plain' });
+    res.end('Method not allowed');
+  }
+});
+
+Meteor.startup(() => {
+  // Your other Meteor startup code here...
 });
