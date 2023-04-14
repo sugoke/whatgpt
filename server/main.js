@@ -13,16 +13,16 @@ console.log(TWILIO_ACCOUNT_SID)
 console.log(TWILIO_AUTH_TOKEN)
 console.log(MY_PHONE_NUMBER)
 
-const twilioClient = twilio(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
-
+const twilioClient = Twilio(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
 
 function sendText(to, body) {
-  return client.messages.create({
+  return twilioClient.messages.create({
     from: MY_PHONE_NUMBER,
     to,
     body
   });
 }
+
 
 async function getChatGPTResponse(prompt) {
   const API_KEY = process.env.OPENAI_API_KEY;
