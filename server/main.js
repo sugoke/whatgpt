@@ -7,8 +7,10 @@ import bodyParser from 'body-parser';
 
 console.log(Meteor.settings);
 
+console.log(process.env);
+
 // Parse the METEOR_SETTINGS JSON string
-const meteorSettings = JSON.parse(Meteor.settings);
+const meteorSettings = JSON.parse(process.env);
 
 const TWILIO_ACCOUNT_SID = meteorSettings.TWILIO_ACCOUNT_SID;
 const TWILIO_AUTH_TOKEN = meteorSettings.TWILIO_AUTH_TOKEN;
