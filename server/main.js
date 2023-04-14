@@ -9,8 +9,8 @@ const TWILIO_AUTH_TOKEN = process.env.TWILIO_AUTH_TOKEN;
 const MY_PHONE_NUMBER = process.env.TWILIO_PHONE_NUMBER;
 const AMAZON_AFFILIATE_TAG = process.env.AMAZON_AFFILIATE_TAG;
 
-const client = Twilio(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
 
+const client = require('Twilio')(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
 
 
 function sendText(to, body) {
@@ -24,7 +24,7 @@ function sendText(to, body) {
 async function getChatGPTResponse(prompt) {
   const API_KEY = process.env.OPENAI_API_KEY;
 
-  const response = await fetch('https://api.openai.com/v1/engines/davinci-codex/completions', {
+  const response = await fetch('https://api.openai.com/v1/engines/text-davinci-002/completions', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
