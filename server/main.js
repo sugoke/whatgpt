@@ -6,7 +6,7 @@ import bodyParser from 'body-parser';
 
 
 
-console.log(process.env.TWILIO_ACCOUNT_SID);
+//console.log(process.env.TWILIO_ACCOUNT_SID);
 
   const TWILIO_ACCOUNT_SID = process.env.TWILIO_ACCOUNT_SID;
   const TWILIO_AUTH_TOKEN = process.env.TWILIO_AUTH_TOKEN;
@@ -29,10 +29,13 @@ console.log(process.env.TWILIO_ACCOUNT_SID);
 
 const twilioClient = Twilio(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
 
+//console.log('From:', MY_PHONE_NUMBER);
+//console.log('To:', to);
+
 function sendText(to, body) {
   return twilioClient.messages.create({
-    from: MY_PHONE_NUMBER,
-    to,
+    from: '+14155238886',
+    to:'+33652841736',
     body
   });
 }
@@ -60,6 +63,8 @@ async function getChatGPTResponse(prompt) {
   return data.choices[0].text.trim();
 }
 
+const impersonationTargets = {};
+
 async function processMessage(message) {
   const senderPhoneNumber = message.From;
   const text = message.Body;
@@ -68,16 +73,17 @@ async function processMessage(message) {
   if (text.toLowerCase().startsWith('impersonate')) {
     const person = text.slice(11).trim();
     // Save the impersonation target in a user's session (or database)
-    // ...
+    impersonationTargets[senderPhoneNumber] = person;
     await sendText(senderPhoneNumber, `I'm now impersonating ${person}. You can ask me questions as if I were them.`);
   } else {
     // Get the impersonation target from the user's session (or database)
-    // ...
+    const person = impersonationTargets[senderPhoneNumber] || 'Anonymous';
     const prompt = `As ${person}, ${text}`;
     const response = await getChatGPTResponse(prompt);
     await sendText(senderPhoneNumber, response);
   }
 }
+
 
 WebApp.connectHandlers.use(bodyParser.urlencoded({ extended: false }));
 
