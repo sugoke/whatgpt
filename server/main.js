@@ -5,9 +5,8 @@ import fetch from 'node-fetch';
 import bodyParser from 'body-parser';
 
 
-Meteor.startup(() => {
 
-console.log(process.env);
+console.log(process.env.TWILIO_ACCOUNT_SID);
 
   const TWILIO_ACCOUNT_SID = process.env.TWILIO_ACCOUNT_SID;
   const TWILIO_AUTH_TOKEN = process.env.TWILIO_AUTH_TOKEN;
@@ -15,28 +14,17 @@ console.log(process.env);
   const AMAZON_AFFILIATE_TAG = process.env.AMAZON_AFFILIATE_TAG;
   const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
-  console.log('TWILIO_ACCOUNT_SID:', TWILIO_ACCOUNT_SID);
-  console.log('TWILIO_AUTH_TOKEN:', TWILIO_AUTH_TOKEN);
-  console.log('TWILIO_PHONE_NUMBER:', MY_PHONE_NUMBER);
-  console.log('AMAZON_AFFILIATE_TAG:', AMAZON_AFFILIATE_TAG);
-  console.log('OPENAI_API_KEY:', OPENAI_API_KEY);
+  //console.log('TWILIO_ACCOUNT_SID:', TWILIO_ACCOUNT_SID);
+  //console.log('TWILIO_AUTH_TOKEN:', TWILIO_AUTH_TOKEN);
+  //console.log('TWILIO_PHONE_NUMBER:', MY_PHONE_NUMBER);
+  //console.log('AMAZON_AFFILIATE_TAG:', AMAZON_AFFILIATE_TAG);
+  //console.log('OPENAI_API_KEY:', OPENAI_API_KEY);
 
   // Your other startup code goes here...
-});
 
 
 
-console.log(process.env);
-
-// Parse the METEOR_SETTINGS JSON string
-const meteorSettings = process.env;
-
-const TWILIO_ACCOUNT_SID = meteorSettings.TWILIO_ACCOUNT_SID;
-const TWILIO_AUTH_TOKEN = meteorSettings.TWILIO_AUTH_TOKEN;
-const MY_PHONE_NUMBER = meteorSettings.TWILIO_PHONE_NUMBER;
-const AMAZON_AFFILIATE_TAG = meteorSettings.AMAZON_AFFILIATE_TAG;
-
-console.log(meteorSettings.TWILIO_ACCOUNT_SID)
+//console.log(meteorSettings.TWILIO_ACCOUNT_SID)
 
 
 const twilioClient = Twilio(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
