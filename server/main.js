@@ -9,9 +9,8 @@ const TWILIO_AUTH_TOKEN = process.env.TWILIO_AUTH_TOKEN;
 const MY_PHONE_NUMBER = process.env.TWILIO_PHONE_NUMBER;
 const AMAZON_AFFILIATE_TAG = process.env.AMAZON_AFFILIATE_TAG;
 
-console.log(TWILIO_ACCOUNT_SID)
-console.log(TWILIO_AUTH_TOKEN)
-console.log(MY_PHONE_NUMBER)
+console.log(process.env.TWILIO_ACCOUNT_SID)
+
 
 const twilioClient = Twilio(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
 
