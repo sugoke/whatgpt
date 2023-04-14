@@ -4,12 +4,16 @@ import Twilio from 'twilio';
 import fetch from 'node-fetch';
 import bodyParser from 'body-parser';
 
-const TWILIO_ACCOUNT_SID = process.env.TWILIO_ACCOUNT_SID;
-const TWILIO_AUTH_TOKEN = process.env.TWILIO_AUTH_TOKEN;
-const MY_PHONE_NUMBER = process.env.TWILIO_PHONE_NUMBER;
-const AMAZON_AFFILIATE_TAG = process.env.AMAZON_AFFILIATE_TAG;
 
-console.log(process.env.TWILIO_ACCOUNT_SID)
+// Parse the METEOR_SETTINGS JSON string
+const meteorSettings = JSON.parse(process.env.METEOR_SETTINGS);
+
+const TWILIO_ACCOUNT_SID = meteorSettings.TWILIO_ACCOUNT_SID;
+const TWILIO_AUTH_TOKEN = meteorSettings.TWILIO_AUTH_TOKEN;
+const MY_PHONE_NUMBER = meteorSettings.TWILIO_PHONE_NUMBER;
+const AMAZON_AFFILIATE_TAG = meteorSettings.AMAZON_AFFILIATE_TAG;
+
+console.log(meteorSettings.TWILIO_ACCOUNT_SID)
 
 
 const twilioClient = Twilio(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
