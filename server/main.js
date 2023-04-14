@@ -5,10 +5,10 @@ import fetch from 'node-fetch';
 import bodyParser from 'body-parser';
 
 
-console.log(meteor.settings);
+console.log(Meteor.settings);
 
 // Parse the METEOR_SETTINGS JSON string
-const meteorSettings = JSON.parse(meteor.settings);
+const meteorSettings = JSON.parse(Meteor.settings);
 
 const TWILIO_ACCOUNT_SID = meteorSettings.TWILIO_ACCOUNT_SID;
 const TWILIO_AUTH_TOKEN = meteorSettings.TWILIO_AUTH_TOKEN;
