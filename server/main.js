@@ -9,7 +9,11 @@ const TWILIO_AUTH_TOKEN = process.env.TWILIO_AUTH_TOKEN;
 const MY_PHONE_NUMBER = process.env.TWILIO_PHONE_NUMBER;
 const AMAZON_AFFILIATE_TAG = process.env.AMAZON_AFFILIATE_TAG;
 
-const client = Twilio(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
+const client = Twilio({
+  username: TWILIO_ACCOUNT_SID,
+  password: TWILIO_AUTH_TOKEN,
+});
+
 
 function sendText(to, body) {
   return client.messages.create({
