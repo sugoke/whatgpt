@@ -10,7 +10,7 @@ const MY_PHONE_NUMBER = process.env.TWILIO_PHONE_NUMBER;
 const AMAZON_AFFILIATE_TAG = process.env.AMAZON_AFFILIATE_TAG;
 
 
-const client = require('Twilio')(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
+const client = require('twilio')(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
 
 
 function sendText(to, body) {
