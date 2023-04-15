@@ -4,7 +4,14 @@ import Twilio from 'twilio';
 import fetch from 'node-fetch';
 import bodyParser from 'body-parser';
 
+// Parse the METEOR_SETTINGS JSON string
+const meteorSettings = JSON.parse(process.env.METEOR_SETTINGS);
 
+// Access the OPENAI_API_KEY from the parsed object
+const OPENAI_API_KEY = meteorSettings.OPENAI_API_KEY;
+
+
+console.log('OPENAI_API_KEY:', OPENAI_API_KEY);
 
 console.log(process.env.TWILIO_ACCOUNT_SID);
 
