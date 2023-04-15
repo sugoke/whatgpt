@@ -4,8 +4,6 @@ import Twilio from 'twilio';
 import fetch from 'node-fetch';
 import bodyParser from 'body-parser';
 
-
-
 Meteor.startup(() => {
   console.log('All environment variables:');
   for (const key in process.env) {
@@ -13,10 +11,17 @@ Meteor.startup(() => {
   }
 });
 
-
 console.log(process.env);
-// Parse the METEOR_SETTINGS JSON string
-const meteorSettings = JSON.parse(process.env.METEOR_SETTINGS);
+
+// Parse the METEOR_SETTINGS JSON string if it's defined
+let meteorSettings = {};
+if (process.env.METEOR_SETTINGS) {
+  try {
+    meteorSettings = JSON.parse(process.env.METEOR_SETTINGS);
+  } catch (error) {
+    console.error('Error parsing METEOR_SETTINGS:', error.message);
+  }
+}
 
 // Access the OPENAI_API_KEY from the parsed object
 const OPENAI_API_KEY = meteorSettings.OPENAI_API_KEY;
