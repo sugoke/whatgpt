@@ -4,11 +4,15 @@ import Twilio from 'twilio';
 import fetch from 'node-fetch';
 import bodyParser from 'body-parser';
 
+import { Meteor } from 'meteor/meteor';
+
 Meteor.startup(() => {
-  // Replace 'MY_ENV_VARIABLE' with the name of your environment variable
-  const myEnvVar = process.env.MY_ENV_VARIABLE;
-  console.log('MY_ENV_VARIABLE:', myEnvVar);
+  console.log('All environment variables:');
+  for (const key in process.env) {
+    console.log(`${key}: ${process.env[key]}`);
+  }
 });
+
 
 console.log(process.env);
 // Parse the METEOR_SETTINGS JSON string
