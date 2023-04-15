@@ -10,8 +10,8 @@ Meteor.startup(() => {
     console.log(`${key}: ${process.env[key]}`);
   }
 });
-
-console.log(process.env);
+console.log("yeah");
+console.log(Meteor.settings);
 
 // Parse the METEOR_SETTINGS JSON string if it's defined
 let meteorSettings = {};
