@@ -14,13 +14,13 @@ console.log(Meteor.settings);
 
 //console.log(process.env.TWILIO_ACCOUNT_SID);
 
-  const TWILIO_ACCOUNT_SID = Meteor.settings.TWILIO_ACCOUNT_SID;
+  const TWILIO_ACCOUNT_SID = Meteor.settings.private.TWILIO_ACCOUNT_SID;
   const TWILIO_AUTH_TOKEN = Meteor.settings.TWILIO_AUTH_TOKEN;
   const MY_PHONE_NUMBER = Meteor.settings.TWILIO_PHONE_NUMBER;
   const AMAZON_AFFILIATE_TAG = Meteor.settings.AMAZON_AFFILIATE_TAG;
  // const OPENAI_API_KEY = Meteor.settings.OPENAI_API_KEY;
 
-  //console.log('TWILIO_ACCOUNT_SID:', TWILIO_ACCOUNT_SID);
+  console.log('TWILIO_ACCOUNT_SID:', TWILIO_ACCOUNT_SID);
   //console.log('TWILIO_AUTH_TOKEN:', TWILIO_AUTH_TOKEN);
   //console.log('TWILIO_PHONE_NUMBER:', MY_PHONE_NUMBER);
   //console.log('AMAZON_AFFILIATE_TAG:', AMAZON_AFFILIATE_TAG);
