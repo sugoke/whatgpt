@@ -4,7 +4,7 @@ import Twilio from 'twilio';
 import fetch from 'node-fetch';
 import bodyParser from 'body-parser';
 
-import { Meteor } from 'meteor/meteor';
+
 
 Meteor.startup(() => {
   console.log('All environment variables:');
