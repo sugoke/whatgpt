@@ -66,6 +66,9 @@ async function getChatGPTResponse(prompt) {
   });
 
   const data = await response.json();
+
+console.log(data)
+
   return data//.choices[0].text.trim();
 }
 
