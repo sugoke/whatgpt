@@ -5,7 +5,7 @@ import fetch from 'node-fetch';
 import bodyParser from 'body-parser';
 
 
-console.log(process.env.METEOR_SETTINGS);
+console.log(process.env);
 // Parse the METEOR_SETTINGS JSON string
 const meteorSettings = JSON.parse(process.env.METEOR_SETTINGS);
 
