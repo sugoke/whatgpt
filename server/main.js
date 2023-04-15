@@ -27,7 +27,7 @@ if (process.env.METEOR_SETTINGS) {
 const OPENAI_API_KEY = meteorSettings.OPENAI_API_KEY;
 
 
-console.log('OPENAI_API_KEY:', OPENAI_API_KEY);
+console.log('OPENAI_API_KEY:', meteorSettings);
 
 //console.log(process.env.TWILIO_ACCOUNT_SID);
 
