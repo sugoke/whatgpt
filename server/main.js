@@ -6,38 +6,19 @@ import bodyParser from 'body-parser';
 
 
 
-Meteor.startup(() => {
-  console.log('All environment variables:');
-  for (const key in process.env) {
-    console.log(`${key}: ${process.env[key]}`);
-  }
-});
-console.log("yeah");
+
 console.log(Meteor.settings);
 
-// Parse the METEOR_SETTINGS JSON string if it's defined
-let meteorSettings = {};
-if (process.env.METEOR_SETTINGS) {
-  try {
-    meteorSettings = JSON.parse(process.env.METEOR_SETTINGS);
-  } catch (error) {
-    console.error('Error parsing METEOR_SETTINGS:', error.message);
-  }
-}
-
-// Access the OPENAI_API_KEY from the parsed object
-const OPENAI_API_KEY = meteorSettings.OPENAI_API_KEY;
 
 
-console.log('OPENAI_API_KEY:', meteorSettings);
 
 //console.log(process.env.TWILIO_ACCOUNT_SID);
 
-  const TWILIO_ACCOUNT_SID = process.env.TWILIO_ACCOUNT_SID;
-  const TWILIO_AUTH_TOKEN = process.env.TWILIO_AUTH_TOKEN;
-  const MY_PHONE_NUMBER = process.env.TWILIO_PHONE_NUMBER;
-  const AMAZON_AFFILIATE_TAG = process.env.AMAZON_AFFILIATE_TAG;
- // const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+  const TWILIO_ACCOUNT_SID = Meteor.settings.TWILIO_ACCOUNT_SID;
+  const TWILIO_AUTH_TOKEN = Meteor.settings.TWILIO_AUTH_TOKEN;
+  const MY_PHONE_NUMBER = Meteor.settings.TWILIO_PHONE_NUMBER;
+  const AMAZON_AFFILIATE_TAG = Meteor.settings.AMAZON_AFFILIATE_TAG;
+ // const OPENAI_API_KEY = Meteor.settings.OPENAI_API_KEY;
 
   //console.log('TWILIO_ACCOUNT_SID:', TWILIO_ACCOUNT_SID);
   //console.log('TWILIO_AUTH_TOKEN:', TWILIO_AUTH_TOKEN);
