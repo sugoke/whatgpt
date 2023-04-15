@@ -75,6 +75,8 @@ async function processMessage(message) {
   const senderPhoneNumber = message.From;
   const text = message.Body;
 
+  console.log(`Message received from ${senderPhoneNumber}: ${text}`);
+
   // Check if it's the first message
   if (text.toLowerCase().startsWith('impersonate')) {
     const person = text.slice(11).trim();
