@@ -5,6 +5,7 @@ import fetch from 'node-fetch';
 import bodyParser from 'body-parser';
 
 
+
 Meteor.startup(() => {
   console.log('All environment variables:');
   for (const key in process.env) {
