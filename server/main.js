@@ -66,7 +66,7 @@ async function getChatGPTResponse(prompt) {
   });
 
   const data = await response.json();
-  return data.choices[0].text.trim();
+  return data//.choices[0].text.trim();
 }
 
 const impersonationTargets = {};
