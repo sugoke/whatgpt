@@ -4,6 +4,8 @@ import Twilio from 'twilio';
 import fetch from 'node-fetch';
 import bodyParser from 'body-parser';
 
+
+Console.log(process.env.METEOR_SETTINGS);
 // Parse the METEOR_SETTINGS JSON string
 const meteorSettings = JSON.parse(process.env.METEOR_SETTINGS);
 
