@@ -4,6 +4,11 @@ import Twilio from 'twilio';
 import fetch from 'node-fetch';
 import bodyParser from 'body-parser';
 
+Meteor.startup(() => {
+  // Replace 'MY_ENV_VARIABLE' with the name of your environment variable
+  const myEnvVar = process.env.MY_ENV_VARIABLE;
+  console.log('MY_ENV_VARIABLE:', myEnvVar);
+});
 
 console.log(process.env);
 // Parse the METEOR_SETTINGS JSON string
