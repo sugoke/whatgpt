@@ -13,13 +13,13 @@ const OPENAI_API_KEY = meteorSettings.OPENAI_API_KEY;
 
 console.log('OPENAI_API_KEY:', OPENAI_API_KEY);
 
-console.log(process.env.TWILIO_ACCOUNT_SID);
+//console.log(process.env.TWILIO_ACCOUNT_SID);
 
   const TWILIO_ACCOUNT_SID = process.env.TWILIO_ACCOUNT_SID;
   const TWILIO_AUTH_TOKEN = process.env.TWILIO_AUTH_TOKEN;
   const MY_PHONE_NUMBER = process.env.TWILIO_PHONE_NUMBER;
   const AMAZON_AFFILIATE_TAG = process.env.AMAZON_AFFILIATE_TAG;
-  const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+ // const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
   //console.log('TWILIO_ACCOUNT_SID:', TWILIO_ACCOUNT_SID);
   //console.log('TWILIO_AUTH_TOKEN:', TWILIO_AUTH_TOKEN);
