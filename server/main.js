@@ -54,9 +54,10 @@ async function getChatGPTResponse(prompt) {
 //  const API_KEY = process.env.OPENAI_API_KEY;
 
 const response = await getChatGPTResponse(prompt);
-console.log(`ChatGPT response: ${response}`);
+console.log('ChatGPT response:', response);
 
-  const response = await fetch('https://api.openai.com/v1/engines/text-davinci-002/completions', {
+const apiResponse = await fetch('https://api.openai.com/v1/engines/text-davinci-002/completions', {
+
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
