@@ -17,10 +17,15 @@ console.log('TWILIO_ACCOUNT_SID:', TWILIO_ACCOUNT_SID);
 const twilioClient = Twilio(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
 
 function sendText(to, body) {
-  console.log(`Sending text to ${to}: ${body}`);
+  // Add "whatsapp:" prefix to both sender and receiver phone numbers
+  const fromNumber = `whatsapp:${MY_PHONE_NUMBER}`;
+  const toNumber = `whatsapp:${to}`;
+
+  console.log(`Sending text to ${toNumber}: ${body}`);
+
   return twilioClient.messages.create({
-    from: MY_PHONE_NUMBER,
-    to: to,
+    from: fromNumber,
+    to: toNumber,
     body
   });
 }
