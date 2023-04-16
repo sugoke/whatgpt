@@ -39,9 +39,12 @@ const twilioClient = Twilio(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
 //console.log('To:', to);
 
 function sendText(to, body) {
+
+  console.log(`Sending text to ${to}: ${body}`);
+
   return twilioClient.messages.create({
-    from: '+14155238886',
-    to:'+33652841736',
+    from: MY_PHONE_NUMBER,
+    to:to,
     body
   });
 }
@@ -49,6 +52,9 @@ function sendText(to, body) {
 
 async function getChatGPTResponse(prompt) {
 //  const API_KEY = process.env.OPENAI_API_KEY;
+
+const response = await getChatGPTResponse(prompt);
+console.log(`ChatGPT response: ${response}`);
 
   const response = await fetch('https://api.openai.com/v1/engines/text-davinci-002/completions', {
     method: 'POST',
@@ -78,7 +84,11 @@ async function processMessage(message) {
   const senderPhoneNumber = message.From;
   const text = message.Body;
 
+
+
   console.log(`Message received from ${senderPhoneNumber}: ${text}`);
+
+console.log(`Impersonation target for ${senderPhoneNumber}: ${person}`);
 
   // Check if it's the first message
   if (text.toLowerCase().startsWith('impersonate')) {
