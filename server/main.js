@@ -48,13 +48,13 @@ function sendText(to, body) {
 
 
 async function getChatGPTResponse(prompt) {
-  const API_KEY = process.env.OPENAI_API_KEY;
+//  const API_KEY = process.env.OPENAI_API_KEY;
 
   const response = await fetch('https://api.openai.com/v1/engines/text-davinci-002/completions', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${API_KEY}`
+      'Authorization': `Bearer ${OPENAI_API_KEY}`
     },
     body: JSON.stringify({
       prompt,
