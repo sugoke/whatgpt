@@ -6,6 +6,7 @@ import bodyParser from 'body-parser';
 
 console.log(Meteor.settings);
 
+
 const TWILIO_ACCOUNT_SID = Meteor.settings.private.TWILIO_ACCOUNT_SID;
 const TWILIO_AUTH_TOKEN = Meteor.settings.private.TWILIO_AUTH_TOKEN;
 const MY_PHONE_NUMBER = Meteor.settings.private.TWILIO_PHONE_NUMBER;
