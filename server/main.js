@@ -29,7 +29,7 @@ function sendText(to, body) {
 
   return twilioClient.messages.create({
     from: 'whatsapp:+14155238886',
-            to: 'whatsapp:+33652841736'
+            to: 'whatsapp:+33652841736',
     body
   });
 }
