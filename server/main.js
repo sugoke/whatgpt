@@ -28,8 +28,8 @@ function sendText(to, body) {
     console.log(`Sending text from ${MY_PHONE_NUMBER} to ${to}: ${body}`);
 
   return twilioClient.messages.create({
-    from: fromNumber,
-    to: toNumber,
+    from: 'whatsapp:+14155238886',
+            to: 'whatsapp:+33652841736'
     body
   });
 }
