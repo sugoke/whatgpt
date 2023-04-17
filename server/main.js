@@ -19,8 +19,11 @@ const twilioClient = Twilio(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
 
 function sendText(to, body) {
   // Add "whatsapp:" prefix to both sender and receiver phone numbers
-  const fromNumber = `whatsapp:${MY_PHONE_NUMBER}`;
-  const toNumber = `whatsapp:${to}`;
+  //const fromNumber = `whatsapp:${MY_PHONE_NUMBER}`;
+  //const toNumber = `whatsapp:${to}`;
+
+  const fromNumber = MY_PHONE_NUMBER;
+  const toNumber = to;
 
     console.log(`Sending text from ${MY_PHONE_NUMBER} to ${to}: ${body}`);
 
