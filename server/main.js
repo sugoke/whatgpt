@@ -61,21 +61,29 @@ async function processMessage(message) {
   const senderPhoneNumber = message.From;
   const text = message.Body;
 
+  // Log the received message
   console.log(`Message received from ${senderPhoneNumber}: ${text}`);
 
+  // Check if the message is an impersonation command
   if (text.toLowerCase().startsWith('impersonate')) {
     const person = text.slice(11).trim();
     impersonationTargets[senderPhoneNumber] = person;
     console.log(`Impersonation target for ${senderPhoneNumber}: ${person}`);
     await sendText(senderPhoneNumber, `I'm now impersonating ${person}. You can ask me questions as if I were them.`);
   } else {
+    // Get the impersonation target and generate a ChatGPT prompt
     const person = impersonationTargets[senderPhoneNumber] || 'Anonymous';
     console.log(`Impersonation target for ${senderPhoneNumber}: ${person}`);
     const prompt = `As ${person}, ${text}`;
     const response = await getChatGPTResponse(prompt);
-    await sendText(senderPhoneNumber, response);
+
+    // Extract the response text from the API response
+    const responseText = response.choices && response.choices[0] && response.choices[0].text ? response.choices[0].text.trim() : "Sorry, I couldn't generate a response.";
+
+    await sendText(senderPhoneNumber, responseText);
   }
 }
+
 
 WebApp.connectHandlers.use(bodyParser.urlencoded({ extended: false }));
 
