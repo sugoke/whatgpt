@@ -21,7 +21,7 @@ function sendText(to, body) {
   const fromNumber = `whatsapp:${MY_PHONE_NUMBER}`;
   const toNumber = `whatsapp:${to}`;
 
-  console.log(`Sending text to ${toNumber}: ${body}`);
+    console.log(`Sending text from ${MY_PHONE_NUMBER} to ${to}: ${body}`);
 
   return twilioClient.messages.create({
     from: fromNumber,
