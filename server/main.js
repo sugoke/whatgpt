@@ -138,7 +138,7 @@ function sendText(to, body) {
 }
 
 async function getChatGPTResponse(prompt) {
-  const apiResponse = await fetch('https://api.openai.com/v1/engines/text-davinci-002/completions', {
+  const apiResponse = await fetch('https://api.openai.com/v1/chat/completions', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
